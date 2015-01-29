@@ -41,7 +41,6 @@
 </div>
 
 <div>
-
 </div>
 
 
@@ -83,6 +82,24 @@
         </div>
       </div>
     </div>
+
+  </div>
+
+  <div class="container">
+
+    <% quotes_array = [
+      { qt: "gCamp has changed my life!  It's the best tool I've ever used.",
+        au: "- Cayla Hayes" },
+      { qt: "Before gCamp I was a disorderly slob.  Now I'm more organized than I've ever been",
+        au: "- Leta Jaskolski"},
+      { qt: "Don't hesitate - sign up right now! You'll never be the same.",
+        au: "- Lavern Upton"}
+      ] %>
+
+      <% quotes_array.each do |quote| %>
+      <p> <%= quote[:qt] %> </p>
+      <p> <em class="text-muted"> <%= quote[:au] %> </em> </p>
+      <% end %>
 
   </div>
 
