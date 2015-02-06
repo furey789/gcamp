@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   # Add other controllers
     get 'terms' => 'terms#view'
     get 'about' => 'about#view'
-    get 'faq' => 'faq#view'
+    # get 'faq' => 'faq#view'
+    get 'faq' => 'common_questions#view'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

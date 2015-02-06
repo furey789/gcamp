@@ -1,0 +1,29 @@
+
+<div class="container">
+
+  <div class="page-header">
+    <h1>Frequently Asked Questions</h1>
+  </div>
+
+  <ul>
+    <li><%= link_to @common_questions.first.question, '#'+@common_questions.first.slug %>
+    <li><%= link_to @common_questions.second.question, '#'+@common_questions.second.slug %>
+    <li><%= link_to @common_questions.third.question, '#'+@common_questions.third.slug %>
+  </ul>
+
+  </br>
+
+  <% @common_questions.each do |cq|%>
+    <h3>
+      <div id=<%= cq.slug %>>
+      <%= cq.question  %>
+      </div>
+    </h3>
+      <br>
+      <div>
+      <%= cq.answer %>
+      </div>
+    <%= link_to "top","#"%>
+  <% end %>
+
+</div>
