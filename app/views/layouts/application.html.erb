@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Gcamp</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -23,7 +25,8 @@
         <hr/>
         <%= link_to "Terms", terms_path %> |
         <%= link_to "About", about_path %> |
-        <%= link_to "FAQ", faq_path %>
+        <%= link_to "FAQ", faq_path %> |
+        <%= link_to "Tasks", tasks_path %>
 
         <%= link_to "https://students.gschool.it/cohorts/8/students/317" do%>
           <%=image_tag("symbolGalvanize.png", class:"icon_image") %>
@@ -40,9 +43,9 @@
         <%= link_to "https://www.linkedin.com/profile/public-profile-settings?trk=prof-edit-edit-public_profile" do%>
           <%=image_tag("symbolLinkedIn.jpg", class:"icon_image") %>
         <% end %>
-
     </footer>
   </div>
 
 </body>
+
 </html>

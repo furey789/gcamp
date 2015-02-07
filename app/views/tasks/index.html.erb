@@ -1,0 +1,30 @@
+
+<div class="container">
+
+  <div class="page-header">
+    <h1>Listing Tasks</h1>
+  </div>
+
+  <div>
+    <p>
+    Description
+    </p>
+    <p>Testing task</p>
+    <p></p>
+  </div>
+
+  <p></p>
+
+    <!-- <div class="row"> -->
+      <div class="row">
+        <div class="col-md-3">
+          Test Task:
+          <%= link_to "Show", new_task_path %>
+          <%= link_to "Edit", new_task_path %>
+          <%= link_to "Delete", new_task_path %>
+        </div>
+      </div>
+    <!-- </div> -->
+    <%= link_to "New Task", new_task_path %>
+
+</div>
