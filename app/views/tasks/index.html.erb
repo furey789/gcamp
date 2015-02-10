@@ -7,7 +7,10 @@
 
   <div>
     <p>
-    Description
+    <% @tasks.each do |event| %>
+    <p> Description: <%= event.description %></p>
+    <hr>
+    <% end %>
     </p>
     <p>Testing task</p>
     <p></p>
@@ -19,9 +22,8 @@
       <div class="row">
         <div class="col-md-3">
           Test Task:
-          <%= link_to "Show", new_task_path %>
           <%= link_to "Edit", new_task_path %>
-          <%= link_to "Delete", new_task_path %>
+          <!-- <%= link_to "Delete", new_task_path %> -->
         </div>
       </div>
     <!-- </div> -->

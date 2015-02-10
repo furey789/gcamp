@@ -1,5 +1,24 @@
-# <%= form_for Task.new do |f| %>
-#   <%= f.label :title %>
-#   <%= f.text_field :title %>
-#   <br>
-# <% end %>
+
+<div class="container">
+  <div class="page-header">
+    <h1>New Task</h1>
+  </div>
+
+  <div>
+    <%= form_for Task.new do |f| %>
+    <%= f.label :description %>
+    <p>
+    <%= f.text_field :description %>
+    </p>
+    <p>
+    <%= f.submit "Create Task" %>
+    <!-- <button type="button" class="btn btn-default btn-md active">
+      Create Task
+    </button> -->
+    </p>
+    <% end %>
+  </div>
+
+  <%= link_to "Back", tasks_path %>
+
+</div>
