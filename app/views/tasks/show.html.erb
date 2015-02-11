@@ -1,8 +1,5 @@
 
 <div class="container">
-  <div style="color:#008000">
-    Task was successfully created
-  </div>
   </br>
   <div>
     Description: <%= @task.description %>
@@ -10,5 +7,5 @@
   </br>
   <%= link_to 'Back', tasks_path %> |
   <%= link_to 'Edit', edit_task_path(@task) %> |
-  <%= link_to 'Delete', task_path(@task), method: :delete %>
+  <%= link_to "Delete", task_path(@task), method: :delete%>
 </div>

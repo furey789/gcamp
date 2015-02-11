@@ -18,6 +18,12 @@
     </div>
   </nav>
 
+  <div class="container" style="color:#008000">
+    <% if notice %>
+    <%= notice %>
+    <% end %>
+  </div>
+
   <%= yield %>   <!-- body of page goes here -->
 
   <div class="container">
@@ -45,6 +51,7 @@
         <% end %>
     </footer>
   </div>
+
 
 </body>
 

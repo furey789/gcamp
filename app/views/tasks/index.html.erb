@@ -3,7 +3,7 @@
 
   <div class="page-header">
     <div class="pull-right">
-      <%= link_to "New Task", new_task_path, class: "btn btn-info" %>
+      <%= link_to "New Task", new_task_path, class: "btn btn-info"%>
     </div>
     <h1>Tasks</h1>
   </div>
@@ -15,18 +15,17 @@
   </div>
 
   <table class="table">
-      <% @tasks.each do |event| %>
+      <% @tasks.each do |task| %>
       <tbody>
       <tr>
         <td>
           <div class="row">
             <div class="col-md-4">
-            <%= event.description %>
+            <%= task.description %>
             </div>
             <div class="col-md-8 text-right">
-            <!-- <div class="text-right"> -->
-              <%= link_to "Edit", new_task_path, class: "btn btn-info" %>
-              <%= link_to "Delete", new_task_path, class: "btn btn-danger" %>
+              <%= link_to "Edit", edit_task_path(task), class: "btn btn-info" %>
+              <%= link_to "Delete", task_path(task), class: "btn btn-danger", method: :delete%>
             </div>
           </div>
         </td>
