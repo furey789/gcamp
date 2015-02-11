@@ -8,13 +8,17 @@
     <h1>Tasks</h1>
   </div>
 
-  <div>
-    <h4>
-      Description:
-    </h4>
-  </div>
 
   <table class="table">
+
+      <thead>
+        <tr>
+          <th>
+            Description:
+          </th>
+        </tr>
+      </thead>
+
       <% @tasks.each do |task| %>
       <tbody>
       <tr>
@@ -30,8 +34,8 @@
           </div>
         </td>
       </tr>
-    </tbody>
-      <% end %>
+      </tbody>
+    <% end %>
   </table>
 
 </div>
