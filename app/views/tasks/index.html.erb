@@ -2,31 +2,37 @@
 <div class="container">
 
   <div class="page-header">
-    <h1>Listing Tasks</h1>
+    <div class="pull-right">
+      <%= link_to "New Task", new_task_path, class: "btn btn-info" %>
+    </div>
+    <h1>Tasks</h1>
   </div>
 
   <div>
-    <p>
-    <% @tasks.each do |event| %>
-    <p> Description: <%= event.description %></p>
-    <hr>
-    <% end %>
-    </p>
-    <p>Testing task</p>
-    <p></p>
+    <h4>
+      Description:
+    </h4>
   </div>
 
-  <p></p>
-
-    <!-- <div class="row"> -->
-      <div class="row">
-        <div class="col-md-3">
-          Test Task:
-          <%= link_to "Edit", new_task_path %>
-          <!-- <%= link_to "Delete", new_task_path %> -->
-        </div>
-      </div>
-    <!-- </div> -->
-    <%= link_to "New Task", new_task_path %>
+  <table class="table">
+      <% @tasks.each do |event| %>
+      <tbody>
+      <tr>
+        <td>
+          <div class="row">
+            <div class="col-md-4">
+            <%= event.description %>
+            </div>
+            <div class="col-md-8 text-right">
+            <!-- <div class="text-right"> -->
+              <%= link_to "Edit", new_task_path, class: "btn btn-info" %>
+              <%= link_to "Delete", new_task_path, class: "btn btn-danger" %>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+      <% end %>
+  </table>
 
 </div>
