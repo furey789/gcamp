@@ -5,12 +5,11 @@
     <h1>Edit Task</h1>
   </div>
 
-  <div>
-    <%= link_to "Tasks", tasks_path %> >
-    <%= link_to @task.description, task_path(@task) %> >
-    Edit
-  </div>
-  <br>
+  <ol class="breadcrumb">
+    <li><%= link_to 'Tasks', tasks_path %></li>
+    <li><%= link_to @task.description, task_path(@task) %></li>
+    <li> Edit
+  </ol>
 
   <%= form_for @task, { html: {class: "form-horizontal"}} do |f| %>
 
