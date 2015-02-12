@@ -1,18 +1,43 @@
 
 <div class="container">
-  
+
   <div class="page-header">
-    <h1>Editing Task</h1>
+    <h1>Edit Task</h1>
   </div>
 
-  <%= form_for @task do |f| %>
-    <%= f.label :description %>
-    <p>
-    <%= f.text_field :description %>
-    </p>
-    <p>
-    <%= f.submit "Update Task" %>
-    </p>
+  <div>
+    <%= link_to "Tasks", tasks_path %> >
+    <%= link_to @task.description, task_path(@task) %> >
+    Edit
+  </div>
+  <br>
+
+  <%= form_for @task, { html: {class: "form-horizontal"}} do |f| %>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label"><%= f.label :description %></label>
+      <div class="col-sm-3">
+        <%= f.text_field :description, class: "col-md-2 form-control"%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label"></label>
+      <div class="col-sm-10 checkbox">
+        <label>
+          <input type="checkbox"> Complete
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label"></label>
+      <div class="col-sm-10">
+        <%= f.submit "Update Task", class: "btn btn-primary" %>
+        <%= link_to "Cancel", tasks_path, class: "btn btn-default" %>
+      </div>
+    </div>
+
   <% end %>
 
   <%= link_to "Back", tasks_path %>
