@@ -29,7 +29,7 @@ class TasksController < ApplicationController
         flash[:notice]="Task was successfully updated!"
         redirect_to task_path(@task)
       else
-        render :edit   # show edit form again; ie. complete action be show other view
+        render :edit   # show edit form again
       end
     end
 
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
     private
 
     def task_params
-      params.require(:task).permit(:description)
+      params.require(:task).permit(:description,:complete)
     end
 
 end

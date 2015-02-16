@@ -24,7 +24,11 @@
         <td>
           <div class="row">
             <div class="col-md-4">
-            <%= link_to task.description, task_path(task) %>
+              <% if task.complete==true %>
+                <s><%= link_to task.description, task_path(task) %></s>
+              <% else %>
+                <%= link_to task.description, task_path(task) %>
+              <% end %>
             </div>
             <div class="col-md-8 text-right">
               <%= link_to "Edit", edit_task_path(task), class: "btn btn-info" %>
@@ -35,6 +39,7 @@
       </tr>
       </tbody>
     <% end %>
+    
   </table>
 
 </div>
