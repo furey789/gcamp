@@ -11,7 +11,7 @@ class TasksController < ApplicationController
     def create
       task = Task.new(task_params)
       task.save
-      flash[:notice]="Task was successfully created!"
+      flash[:notice]="Task was successfully updated!"
       redirect_to task_path(task)
     end
 
