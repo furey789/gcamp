@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     get 'faq' => 'common_questions#view'
     resources :tasks
     # , only: [:index, :new, :create, :show, :edit, :update]
+    resources :users
 
 end

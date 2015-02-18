@@ -18,12 +18,10 @@
         </tr>
       </thead>
 
-      <% @tasks.each do |task| %>
 
       <tbody>
+        <% @tasks.each do |task| %>
         <tr>
-          <div class="row">
-              <div>
                 <td>
                   <% if task.complete==true %>
                     <s><%= link_to task.description, task_path(task) %></s>
@@ -40,33 +38,13 @@
                   <%= link_to "Edit", edit_task_path(task), class: "btn btn-info" %>
                   <%= link_to "Delete", task_path(task), class: "btn btn-danger", method: :delete%>
                 </td>
-              </div>
-          </div>
         </tr>
+        <% end %>
+
       </tbody>
 
-      <!-- <tbody>
-        <tr>
-          <div class="row">
-            <td>
-              <div class="col-md-4">
-                <% if task.complete==true %>
-                  <s><%= link_to task.description, task_path(task) %></s>
-                <% else %>
-                  <%= link_to task.description, task_path(task) %>
-                <% end %>
-                <%= task.due_date %>
-              </div>
-              <div class="col-md-8 text-right">
-                <%= link_to "Edit", edit_task_path(task), class: "btn btn-info" %>
-                <%= link_to "Delete", task_path(task), class: "btn btn-danger", method: :delete%>
-              </div>
-            </td>
-          </div>
-        </tr>
-      </tbody> -->
 
-    <% end %>
+
 
   </table>
 

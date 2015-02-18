@@ -1,0 +1,17 @@
+<%= form_for @user, { html: {class: "form-horizontal"}} do |f| %>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label"><%= f.label :name %></label>
+    <div class="col-sm-3">
+      <%= f.text_field :first_name, class: "col-md-2 form-control"%>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label"><%= f.label :email %></label>
+    <div class="col-sm-3">
+      <%= f.text_field :email, class: "col-md-2 form-control"%>
+    </div>
+  </div>
+
+<% end %>
