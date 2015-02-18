@@ -8,8 +8,13 @@
     <h1>
       <% if @task.complete==true %>
         <s><%= @task.description %></s>
+        &nbsp;
       <% else %>
         <%= @task.description %>
+        &nbsp;
+      <% end %>
+      <% if @task.due_date %>
+        <%= @task.due_date.strftime("%D") %>
       <% end %>
     </h1>
   </div>
