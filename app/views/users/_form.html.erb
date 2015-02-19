@@ -35,9 +35,9 @@
 
     <div class="form-group">
       <label class="col-sm-2 control-label"></label>
-      <div class="col-sm-10">
-        <div class="well col-md-3 text-center">
-          <%= link_to "Delete", user_path(@user), class: "btn btn-danger", align: "center",
+      <div class="col-sm-3">
+        <div class="well col-md-12 text-center">
+          <%= link_to "Delete User", user_path(@user), class: "btn btn-danger", align: "center",
           method: "delete", data: { confirm: "Are you sure?" }%>
         </div>
       </div>
