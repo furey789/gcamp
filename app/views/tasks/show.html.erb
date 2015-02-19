@@ -13,9 +13,6 @@
         <%= @task.description %>
         &nbsp;
       <% end %>
-      <% if @task.due_date %>
-        <%= @task.due_date.strftime("%D") %>
-      <% end %>
     </h1>
   </div>
 
@@ -23,6 +20,12 @@
     <li><%= link_to 'Tasks', tasks_path %></li>
     <li><%= @task.description %></li>
   </ol>
+
+  <div class="col-md-2">
+    <% if @task.due_date %>
+      Due on: <%= @task.due_date.strftime("%D") %>
+    <% end %>
+  </div>
 
   </br>
 
