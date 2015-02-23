@@ -13,10 +13,14 @@ class ProjectsController < ApplicationController
     @project.save
     if @project.save
       flash[:notice]="Project was successfully created"
-      redirect_to projects_path
+      redirect_to project_path(@project)
     else
       render :new
     end
+  end
+
+  def show
+    @project=Project.find(params[:id])
   end
 
   private
