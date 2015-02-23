@@ -9,10 +9,13 @@ class TasksController < ApplicationController
     end
 
     def create
-      task = Task.new(task_params)
-      task.save
-      flash[:notice]="Task was successfully updated!"
-      redirect_to task_path(task)
+      @task = Task.new(task_params)
+      if @task.save
+        flash[:notice]="Task was successfully updated!"
+        redirect_to task_path(@task)
+      else
+        render :new
+      end
     end
 
     def show
