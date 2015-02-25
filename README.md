@@ -21,7 +21,7 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* Travis CI link: https://travis-ci.org/furey789/gcamp
 
 
 Please feel free to use a different markup language if you do not plan to run
