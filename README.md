@@ -21,8 +21,12 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* Travis CI link: 
+* Travis CI links:
+
+  https://travis-ci.org/furey789/gcamp
+ 
   ![](https://travis-ci.org/furey789/gcamp.svg?branch=master)
+
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
