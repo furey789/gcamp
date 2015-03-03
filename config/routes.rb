@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     # , only: [:index, :new, :create, :show, :edit, :update]
     resources :users
     resources :projects
-
+    get 'sign-up', to: "registrations#new"
+    post 'sign-up', to: "registrations#create"
+    
 end
