@@ -6,6 +6,15 @@
     <div class="well col-md-6 col-md-offset-3">
       <br>
         <h3>Sign Up for gCamp!</h3>
+
+        <% if @user.errors.any? %>
+          <ul class="list-unstyled text-danger">
+            <% @user.errors.full_messages.each do |m| %>
+              <li> <%= m %> </li>
+            <% end %>
+          </ul>
+        <% end %>
+
         <hr>
         <div class="form-group">
           <%= f.label :first_name %>
