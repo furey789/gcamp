@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
 
+    before_action :ensure_current_user
+
     def index
       @tasks = Task.all
     end
@@ -46,6 +48,13 @@ class TasksController < ApplicationController
 
     def task_params
       params.require(:task).permit(:description,:complete,:due_date)
+    end
+
+    def ensure_current_user
+      unless current_user
+        flash[:alert]="You must sign in"
+        redirect_to sign_in_path
+      end
     end
 
 end
