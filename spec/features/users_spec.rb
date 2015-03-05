@@ -98,4 +98,33 @@ feature "Users" do
 
   end
 
+  scenario "person can sign up" do
+
+    visit root_path
+    click_link 'Sign Up'
+    fill_in "First name", with: "Mo"
+    fill_in "Last name", with: "Nee"
+    fill_in "Email", with: "mn@ex.com"
+    fill_in "Password", with: '123'
+    fill_in "Password confirmation", with: '123'
+    click_button 'Sign Up'
+
+    expect(current_path).to eq '/'
+    expect(page).to have_content 'You have successfully signed up'
+
+  end
+
+  scenario "person can see validations on sign up" do
+
+    visit root_path
+    click_link 'Sign Up'
+    click_button 'Sign Up'
+
+    expect(page).to have_content 'Password can\'t be blank'
+    expect(page).to have_content 'First name can\'t be blank'
+    expect(page).to have_content 'Last name can\'t be blank'
+    expect(page).to have_content 'Email can\'t be blank'
+
+  end
+
 end
