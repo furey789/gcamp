@@ -7,10 +7,9 @@
       <h3>Sign Into gCamp!</h3>
       <hr>
 
-      <% if @user.valid? %>
-      <% else %>s
+      <% if @sign_in_error %>
         <ul class="list-unstyled text-danger">
-          <%= "Email / Password combination is invalid" %>
+          <%= @sign_in_error %>
         </ul>
       <% end %>
 
