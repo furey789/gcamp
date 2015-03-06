@@ -6,10 +6,15 @@ Rails.application.routes.draw do
     get 'terms' => 'terms#view'
     get 'about' => 'about#view'
     get 'faq' => 'common_questions#view'
-    resources :tasks
+
+    #resources :tasks
     # , only: [:index, :new, :create, :show, :edit, :update]
     resources :users
-    resources :projects
+
+    resources :projects do
+      resources :tasks
+    end
+
     get 'sign-up', to: "registrations#new"
     post 'sign-up', to: "registrations#create"
     get 'sign-out', to: "authentications#destroy"
