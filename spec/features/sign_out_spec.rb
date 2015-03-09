@@ -5,10 +5,12 @@ feature 'Sign Out' do
 
   scenario 'User can sign out' do
 
+    User.create!(first_name: "a", last_name: "a", email: "a@ex.com", password: "a")
+
     visit root_path
     click_link 'Sign In'
-    fill_in "Email", with: "js@gmail.com"
-    fill_in "Password", with: 'js'
+    fill_in "Email", with: "a@ex.com"
+    fill_in "Password", with: 'a'
     click_button 'Sign In'
 
     expect(current_path).to eq '/'

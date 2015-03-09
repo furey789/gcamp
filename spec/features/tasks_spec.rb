@@ -5,9 +5,14 @@ require 'rails_helper'
 feature "Tasks" do
 
   before :each do
+
     User.destroy_all
     user=User.create!(first_name: "Joe", last_name: "Steiner", email: "js@gmail.com",
       password:"js", password_confirmation: "js")
+
+    project=create_project
+    task=create_task(project)
+
   end
 
   scenario "user can create, read, update and delete a task" do
@@ -18,33 +23,42 @@ feature "Tasks" do
     fill_in "Password", with: 'js'
     click_button 'Sign In'
 
-    click_link 'Tasks'
-    expect(current_path).to eq '/tasks'
+    click_link 'Projects'
+    expect(current_path).to eq '/projects'
+
+    click_link 'Godzilla'
+
+    click_link '1 Task'
+    expect(page).to have_content 'New Task'
+
+    click_link 'Smell'
+    expect(page).to have_content 'Smell'
+
+    click_link 'Edit'
+    expect(page).to have_content 'Edit Task'
+
+    fill_in "Description", with: "Push"
+    fill_in "Due date", with: "01/01/2015"
+    click_button 'Update Task'
+
+    expect(page).to have_content 'Task was successfully updated!'
+    expect(page).to have_content 'Push'
 
     click_link 'New Task'
-
     expect(page).to have_content 'New Task'
-    fill_in "Description", with: "Jump rope"
+    fill_in "Description", with: "Smile"
     fill_in "Due date", with: "01/01/2015"
     click_button 'Create Task'
 
     expect(page).to have_content 'Task was successfully created!'
-    expect(page).to have_content 'Jump rope'
 
-    click_link 'Edit'
-    expect(page).to have_content 'Jump rope'
+    visit '/projects'
+    click_link 'Godzilla'
 
-    fill_in "Description", with: "Jump da rope"
-    click_button 'Update Task'
-
-    expect(page).to have_content 'Task was successfully updated!'
-
-    visit '/tasks'
-
-    expect(page).to have_content 'Jump da rope'
+    expect(page).to have_content 'Godzilla'
 
     click_link 'Delete'
-    expect(page).to have_no_content 'Jump da rope'
+    expect(page).to have_no_content 'Godzilla'
 
   end
 
@@ -56,8 +70,13 @@ feature "Tasks" do
     fill_in "Password", with: 'js'
     click_button 'Sign In'
 
-    click_link 'Tasks'
-    expect(current_path).to eq '/tasks'
+    click_link 'Projects'
+    expect(current_path).to eq '/projects'
+
+    click_link 'Godzilla'
+
+    click_link '1 Task'
+    expect(page).to have_content 'New Task'
 
     click_link 'New Task'
 
