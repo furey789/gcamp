@@ -13,10 +13,22 @@
   <li><%= @project.name %></li>
   </ol>
 
-  <% if @project.tasks.count==1 %>
-    <%= link_to @project.tasks.count.to_s + " Task", project_tasks_path(@project) %>
-  <% else %>
-    <%= link_to @project.tasks.count.to_s + " Tasks", project_tasks_path(@project) %>
-  <% end %>
+  <div>
+    <% if @project.tasks.count==1 %>
+      <%= link_to @project.tasks.count.to_s + " Task", project_tasks_path(@project) %>
+    <% else %>
+      <%= link_to @project.tasks.count.to_s + " Tasks", project_tasks_path(@project) %>
+    <% end %>
+  </div>
+
+
+  <div>
+    <% if @project.memberships.count==1 %>
+      <%= link_to @project.memberships.count.to_s + " Membership", project_memberships_path(@project) %>
+    <% else %>
+      <%= link_to @project.memberships.count.to_s + " Memberships", project_memberships_path(@project) %>
+    <% end %>
+  </div>
+
 
 </div>
