@@ -1,0 +1,24 @@
+
+<div class="container">
+
+  <div class="page-header">
+      <div class="pull-right">
+        <%= link_to "New Membership", new_project_membership_path(@project), class: "btn btn-info"%>
+    </div>
+    <h1>
+      <%= @project.name %>: Manage Members
+    </h1>
+  </div>
+
+  <ol class="breadcrumb">
+    <li><%= link_to 'Projects', projects_path %></li>
+    <li><%= link_to @project.name, project_path(@project) %></li>
+    <li>Memberships</li>
+  </ol>
+
+  <%= form_for [@project, @membership] do |f| %>
+    <%= f.label :user_id %>
+    <%= f.collection_select :user_id, User.all, :id, :name, {}, {class: "form-control"} %>
+  <% end %>
+
+</div>
