@@ -26,7 +26,7 @@ class MembershipsController < ApplicationController
   def update
     @membership=Membership.find(params[:id])
     if @membership.update(params.require(:membership).permit(:user_id,:role).merge(project_id: params[:project_id]))
-      flash[:notice]= "Member status was successfully updated"
+      flash[:notice]= @membership.user.full_name + " was successfully updated"
       redirect_to project_memberships_path
     else
       render :index
