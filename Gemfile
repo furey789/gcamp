@@ -48,5 +48,6 @@ group :development, :test do
   # For tests
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'pry'
 
 end
