@@ -24,9 +24,13 @@
 
 
   <% if @task.due_date %>
-    Due on: <%= @task.due_date.strftime("%D") %>
+    <b>Due on:</b> <%= @task.due_date.strftime("%D") %>
     <br>
-    Complete:
+    <% if @task.complete==true %>
+      <b>Complete:</b> true
+    <% else %>
+      <b>Complete:</b> false
+    <% end %>
     <br>
     <h3>Comments</h3>
   <% end %>
