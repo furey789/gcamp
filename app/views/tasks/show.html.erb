@@ -22,12 +22,40 @@
     <li><%= @task.description %></li>
   </ol>
 
-  <div class="col-md-2">
-    <% if @task.due_date %>
-      Due on: <%= @task.due_date.strftime("%D") %>
-    <% end %>
-  </div>
 
+  <% if @task.due_date %>
+    Due on: <%= @task.due_date.strftime("%D") %>
+    <br>
+    Complete:
+    <br>
+    <h3>Comments</h3>
+  <% end %>
   </br>
+
+  <% @task.comments.each do |comment| %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= link_to "#{current_user.first_name} #{current_user.last_name}" %>
+        <div class="text-muted">
+          <%= time_ago_in_words(comment.created_at) %>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <%= comment.words %>
+      </div>
+    </div>
+    <br>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-3"> </div>
+    <div class="col-md-9">
+      <%= form_for @comment, url: project_task_comments_path(@project,@task) do |f| %>
+        <%= f.text_area(:words, size: '117x3') %>
+        <br>
+        <%= f.submit 'Add Comment', class: "btn btn-info" %>
+      <% end %>
+    </div>
+  </div>
 
 </div>

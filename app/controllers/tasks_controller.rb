@@ -2,20 +2,23 @@ class TasksController < ApplicationController
 
     before_action :ensure_current_user
 
-    before_action do
-      @project=Project.find(params[:project_id])
-    end
+    # before_action do
+    #   @project=Project.find(params[:project_id])
+    # end
 
 
     def index
+      @project=Project.find(params[:project_id])
       @tasks = @project.tasks
     end
 
     def new
+      @project=Project.find(params[:project_id])
       @task = @project.tasks.new
     end
 
     def create
+      @project=Project.find(params[:project_id])
       @task = @project.tasks.new(task_params)
       if @task.save
         flash[:notice]="Task was successfully created!"
@@ -26,14 +29,18 @@ class TasksController < ApplicationController
     end
 
     def show
+      @project=Project.find(params[:project_id])
       @task = @project.tasks.find(params[:id])
+      @comment = Comment.new   #Always like this, not @task.comment.new
     end
 
     def edit
+      @project=Project.find(params[:project_id])
       @task = @project.tasks.find(params[:id])
     end
 
     def update
+      @project=Project.find(params[:project_id])
       @task = @project.tasks.find(params[:id])
       if @task.update(task_params)
         flash[:notice]="Task was successfully updated!"
@@ -44,6 +51,7 @@ class TasksController < ApplicationController
     end
 
     def destroy
+      @project=Project.find(params[:project_id])
       @task = @project.tasks.find(params[:id])
       @task.delete
       redirect_to project_tasks_path(@project)

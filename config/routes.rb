@@ -13,7 +13,10 @@ Rails.application.routes.draw do
 
     resources :projects do
       resources :tasks
-      resources :memberships
+      resources :memberships, only: [:index,:create,:update,:destroy]
+      resources :tasks, only: [] do
+        resources :comments, only: [:create]
+      end
     end
 
     get 'sign-up', to: "registrations#new"
