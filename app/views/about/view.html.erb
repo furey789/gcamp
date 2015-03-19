@@ -1,4 +1,4 @@
-                  
+
 <div class="container">
 
   <div class="page-header">
@@ -20,6 +20,19 @@
       every feature of gCamp.</p>
     </div>
 
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>gCamp is extremely active. Check out our killer stats below!
+      <br>
+      <%= pluralize(@projects.count,'Project') %>,
+      <%= pluralize(@tasks.count,'Task') %>,
+      <%= pluralize(@memberships.count,'Project Member') %>,
+      <%= pluralize(@users.count,'User') %>,
+      <%= pluralize(@comments.count,'Comment') %>
+      </h5>
+    </div>
   </div>
 
 </div>
