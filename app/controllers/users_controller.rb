@@ -40,6 +40,14 @@ class UsersController < ApplicationController
 
   def destroy
     @user=User.find(params[:id])
+    @comments=Comment.all
+    @comments.each do |comment|
+      if comment.user_id==@user.id
+        comment.user_id=nil
+        comment.save
+      end
+    end
+
     @user.destroy
     flash[:notice]="User was successfully deleted"
     redirect_to users_path
