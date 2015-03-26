@@ -1,6 +1,8 @@
 
 class MembershipsController < ApplicationController
 
+  before_action :ensure_member
+
   before_action do
     @membership_types=['member','owner']
   end
@@ -10,7 +12,6 @@ class MembershipsController < ApplicationController
     @memberships = @project.memberships
     @membership = Membership.new
   end
-
 
   def create
     @project=Project.find(params[:project_id])
@@ -45,6 +46,14 @@ class MembershipsController < ApplicationController
 
   def membership_params
     params.require(:membership).permit(:user_id,:role)
+  end
+
+  def ensure_member
+    @project=Project.find(params[:project_id])
+    if !@project.memberships.pluck(:user_id).include?(current_user.id)
+      flash[:alert]="You do not have access to that project"
+      redirect_to projects_path
+    end
   end
 
 end
