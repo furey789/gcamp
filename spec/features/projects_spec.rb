@@ -28,7 +28,10 @@ feature "Projects" do
     click_button 'Create Project'
 
     expect(page).to have_content 'Project was successfully created'
-    expect(page).to have_content 'Build an arc'
+    expect(page).to have_content 'Tasks for Build an arc'
+
+    click_on 'Build an arc'
+    expect(page).to have_content 'Build an arc Project'
 
     click_on 'Edit'
     expect(page).to have_content 'Edit Project'

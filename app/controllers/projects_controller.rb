@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     if @project.save
       assign_owner_to_project(@project)
       flash[:notice]="Project was successfully created"
-      redirect_to project_path(@project)
+      redirect_to project_tasks_path(@project)
     else
       render :new
     end
