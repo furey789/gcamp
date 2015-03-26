@@ -10,7 +10,7 @@ class RegistrationsController < ApplicationController
     if @user.save
       session[:user_id]=@user.id
       flash[:notice]='You have successfully signed up'
-      redirect_to root_path
+      redirect_to new_project_path
     else
       flash[:notice]='You must enter user data to sign up'
       render :new
