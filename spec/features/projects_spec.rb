@@ -6,8 +6,7 @@ feature "Projects" do
 
   before :each do
     User.destroy_all
-    user=User.create!(first_name: "Joe", last_name: "Steiner", email: "js@gmail.com",
-      password:"js", password_confirmation: "js")
+    user=create_user
   end
 
   scenario "user can create, read, update and delete a task" do

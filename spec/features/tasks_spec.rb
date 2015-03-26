@@ -7,10 +7,9 @@ feature "Tasks" do
   before :each do
 
     User.destroy_all
-    user=User.create!(first_name: "Joe", last_name: "Steiner", email: "js@gmail.com",
-      password:"js", password_confirmation: "js")
-
+    user=create_user
     project=create_project
+    membership=create_membership(user,project)
     task=create_task(project)
 
   end
