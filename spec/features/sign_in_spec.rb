@@ -15,7 +15,7 @@ feature 'Sign In' do
     fill_in "Password", with: 'a'
     click_button 'Sign In'
 
-    expect(current_path).to eq root_path
+    expect(current_path).to eq projects_path
 
     expect(page).to have_content 'You have successfully signed in'
 

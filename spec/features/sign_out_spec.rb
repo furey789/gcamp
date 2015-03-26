@@ -13,7 +13,7 @@ feature 'Sign Out' do
     fill_in "Password", with: 'a'
     click_button 'Sign In'
 
-    expect(current_path).to eq '/'
+    expect(current_path).to eq projects_path
     expect(page).to have_content 'You have successfully signed in'
 
     click_link 'Sign Out'
