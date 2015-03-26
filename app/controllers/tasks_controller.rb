@@ -2,10 +2,7 @@ class TasksController < ApplicationController
 
     before_action :ensure_current_user
 
-    # before_action do
-    #   @project=Project.find(params[:project_id])
-    # end
-
+    before_action :ensure_member
 
     def index
       @project=Project.find(params[:project_id])
@@ -67,6 +64,14 @@ class TasksController < ApplicationController
       unless current_user
         flash[:alert]="You must sign in"
         redirect_to sign_in_path
+      end
+    end
+
+    def ensure_member
+      @project=Project.find(params[:project_id])
+      if !@project.memberships.pluck(:user_id).include?(current_user.id)
+        flash[:alert]="You do not have access to that project"
+        redirect_to projects_path
       end
     end
 
