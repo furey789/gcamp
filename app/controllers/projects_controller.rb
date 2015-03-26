@@ -12,8 +12,8 @@ class ProjectsController < ApplicationController
 
   def create
     @project=Project.new(project_params)
-    @project.save
     if @project.save
+      assign_owner_to_project(@project)
       flash[:notice]="Project was successfully created"
       redirect_to project_path(@project)
     else
@@ -57,6 +57,14 @@ class ProjectsController < ApplicationController
       flash[:alert]="You must sign in"
       redirect_to sign_in_path
     end
+  end
+
+  def assign_owner_to_project(project)
+    @membership=Membership.new
+    @membership.user_id=current_user.id
+    @membership.project_id=project.id
+    @membership.role='owner'
+    @membership.save
   end
 
 end
