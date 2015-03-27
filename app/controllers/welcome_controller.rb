@@ -1,4 +1,7 @@
-class WelcomeController < ApplicationController
-    def index
-    end
+class WelcomeController < PublicController
+
+  def index
+
+  end
+
 end

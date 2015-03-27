@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
 
-    before_action :ensure_current_user
-
+    before_action :target_project
     before_action :ensure_member
 
     def index
@@ -60,19 +59,8 @@ class TasksController < ApplicationController
       params.require(:task).permit(:description,:complete,:due_date,:project_id)
     end
 
-    def ensure_current_user
-      unless current_user
-        flash[:alert]="You must sign in"
-        redirect_to sign_in_path
-      end
-    end
-
-    def ensure_member
+    def target_project
       @project=Project.find(params[:project_id])
-      if !@project.memberships.pluck(:user_id).include?(current_user.id)
-        flash[:alert]="You do not have access to that project"
-        redirect_to projects_path
-      end
     end
 
 end

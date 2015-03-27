@@ -1,4 +1,4 @@
-class CommonQuestionsController < ApplicationController
+class CommonQuestionsController < PublicController
 
     def view
 

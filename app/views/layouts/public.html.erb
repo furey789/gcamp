@@ -12,30 +12,7 @@
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-
-      <div class="navbar-brand">
-        <%= link_to "gCamp", projects_path %>
-      </div>
-
-      <div class="nav navbar-nav">
-        <li class="dropdown" padding-left: 5px>
-         <a class="dropdown-toggle" data-toggle="dropdown">Projects<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <% @projects.each do |project|%>
-              <% if project.memberships.pluck(:user_id).include?(current_user.id)%>
-                <li> <%=link_to "#{project.name}", project_path(project)%> </li>
-              <% end %>
-            <% end %>
-              <li class="divider"></li>
-              <li> <%=link_to "New Project", new_project_path %> </li>
-          </ul>
-        </li>
-      </div>
-
-      <div class="navbar-brand">
-        <%= link_to "Users", users_path %>
-      </div>
-
+      <a class="navbar-brand" href="#">gCamp</a>
       <ul class="nav navbar-nav navbar-right">
 
         <% if session[:user_id].present? %>
@@ -45,6 +22,13 @@
           </li>
           <li>
             <%= link_to "Sign Out", sign_out_path %>
+          </li>
+        <% else %>
+          <li>
+          <%= link_to "Sign Up", sign_up_path %>
+          </li>
+          <li>
+            <%= link_to "Sign In", sign_in_path %>
           </li>
         <% end %>
 
@@ -71,12 +55,33 @@
   <%= yield %>   <!-- body of page goes here -->
 
   <div class="container">
-    <footer align=center>
+    <footer>
         <hr/>
-        <%= link_to "Home", root_path %> |
         <%= link_to "Terms", terms_path %> |
         <%= link_to "About", about_path %> |
         <%= link_to "FAQ", faq_path %>
+
+        <% if current_user %>
+          |
+          <%= link_to "Users", users_path %> |
+          <%= link_to "Projects", projects_path %>
+        <% end %>
+
+        <%= link_to "https://students.gschool.it/cohorts/8/students/317" do%>
+          <%=image_tag("symbolGalvanize.png", class:"icon_image") %>
+        <% end %>
+
+        <%= link_to "https://twitter.com/codogwater" do%>
+          <%=image_tag("symbolTwitter.png", class:"icon_image") %>
+        <% end %>
+
+        <%= link_to "https://github.com/furey789" do%>
+          <%=image_tag("symbolGit.png", class:"icon_image") %>
+        <% end %>
+
+        <%= link_to "https://www.linkedin.com/profile/public-profile-settings?trk=prof-edit-edit-public_profile" do%>
+          <%=image_tag("symbolLinkedIn.jpg", class:"icon_image") %>
+        <% end %>
     </footer>
   </div>
 

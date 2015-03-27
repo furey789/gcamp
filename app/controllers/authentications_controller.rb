@@ -1,5 +1,5 @@
 
-class AuthenticationsController < ApplicationController
+class AuthenticationsController < PublicController
 
   def destroy
     session[:user_id]=nil

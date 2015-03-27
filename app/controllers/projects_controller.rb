@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
 
-  before_action :ensure_current_user
-
+  before_action :target_project, except: [:index,:new,:create]
   before_action :ensure_member, only: [:show,:edit,:update,:destroy]
 
   def index
@@ -54,19 +53,8 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:name)
   end
 
-  def ensure_current_user
-    unless current_user
-      flash[:alert]="You must sign in"
-      redirect_to sign_in_path
-    end
-  end
-
-  def ensure_member
+  def target_project
     @project=Project.find(params[:id])
-    if !@project.memberships.pluck(:user_id).include?(current_user.id)
-      flash[:alert]="You do not have access to that project"
-      redirect_to projects_path
-    end
   end
 
   def assign_owner_to_project(project)
