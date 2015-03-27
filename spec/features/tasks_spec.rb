@@ -22,10 +22,9 @@ feature "Tasks" do
     fill_in "Password", with: 'js'
     click_button 'Sign In'
 
-    click_link 'Projects'
     expect(current_path).to eq '/projects'
 
-    click_link 'Godzilla'
+    find('table.table').click_on 'Godzilla'
 
     click_link '1 Task'
     expect(page).to have_content 'New Task'
@@ -52,7 +51,7 @@ feature "Tasks" do
     expect(page).to have_content 'Task was successfully created!'
 
     visit '/projects'
-    click_link 'Godzilla'
+    find('table.table').click_on 'Godzilla'
 
     expect(page).to have_content 'Godzilla'
 
@@ -69,10 +68,9 @@ feature "Tasks" do
     fill_in "Password", with: 'js'
     click_button 'Sign In'
 
-    click_link 'Projects'
     expect(current_path).to eq '/projects'
 
-    click_link 'Godzilla'
+    find('table.table').click_on 'Godzilla'
 
     click_link '1 Task'
     expect(page).to have_content 'New Task'

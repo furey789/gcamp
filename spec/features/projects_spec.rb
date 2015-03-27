@@ -17,10 +17,11 @@ feature "Projects" do
     fill_in "Password", with: 'js'
     click_button 'Sign In'
 
-    click_link 'Projects'
     expect(current_path).to eq '/projects'
 
-    click_link 'New Project'
+    expect(page).to have_content 'Projects'
+
+    find('div.page-header').click_on 'New Project'
 
     expect(page).to have_content 'New Project'
     fill_in "Name", with: "Build an arc"
@@ -29,7 +30,7 @@ feature "Projects" do
     expect(page).to have_content 'Project was successfully created'
     expect(page).to have_content 'Tasks for Build an arc'
 
-    click_on 'Build an arc'
+    find('ol.breadcrumb').click_on 'Build an arc'
     expect(page).to have_content 'Build an arc Project'
 
     click_on 'Edit'
@@ -55,10 +56,9 @@ feature "Projects" do
     fill_in "Password", with: 'js'
     click_button 'Sign In'
 
-    click_link 'Projects'
     expect(current_path).to eq '/projects'
 
-    click_link 'New Project'
+    find('div.page-header').click_on 'New Project'
 
     expect(page).to have_content 'New Project'
     click_button 'Create Project'
