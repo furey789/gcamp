@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 
   before_action :target_project, except: [:index,:new,:create]
   before_action :ensure_member, only: [:show,:edit,:update,:destroy]
+  before_action :ensure_owner, only: [:edit,:update,:destroy]
 
   def index
     @projects=Project.all

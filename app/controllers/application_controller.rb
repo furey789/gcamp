@@ -30,4 +30,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def ensure_owner
+    project_owner = @project.memberships.find_by(role: 'owner')
+    if current_user.id != project_owner.user_id 
+      flash[:alert]="You do not have access"
+      redirect_to project_path(@project)
+    end
+  end
+
 end
