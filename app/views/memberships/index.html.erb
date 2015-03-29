@@ -13,40 +13,39 @@
     <li>Memberships</li>
   </ol>
 
+  <% project_owner = @project.memberships.find_by(role: 'owner') %>
+  <% if current_user.id == project_owner.user_id %>
 
-  <% if @membership.errors.any? %>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="alert alert-danger">
-          <h3> <%= pluralize(@membership.errors.count, "error") %>
-            prohibited this form form being saved:
-          </h3>
-          <ul>
-            <% @membership.errors.full_messages.each do |error| %>
-              <li><%= error %></li>
-            <% end %>
-          </ul>
+    <% if @membership.errors.any? %>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="alert alert-danger">
+            <h3> <%= pluralize(@membership.errors.count, "error") %>
+              prohibited this form form being saved:
+            </h3>
+            <ul>
+              <% @membership.errors.full_messages.each do |error| %>
+                <li><%= error %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
-
-
-  <div class="well form-inline">
-    <%= form_for [@project, @membership] do |f| %>
-
-      <%= f.collection_select( :user_id, User.all, :id, :full_name,
-        {prompt: "Please select a user ..."}, {class: "form-control"} )%>
-
-      <%= f.collection_select( :role, @membership_types, :to_s, :to_s,
-        {}, {class: "form-control"} ) %>
-
-      <%= f.submit 'Add New Member', class: "btn btn-info" %>
-
     <% end %>
-  </div>
 
-  <!-- <div> -->
+    <div class="well form-inline">
+      <%= form_for [@project, @membership] do |f| %>
+
+        <%= f.collection_select( :user_id, User.all, :id, :full_name,
+          {prompt: "Please select a user ..."}, {class: "form-control"} )%>
+
+        <%= f.collection_select( :role, @membership_types, :to_s, :to_s,
+          {}, {class: "form-control"} ) %>
+
+        <%= f.submit 'Add New Member', class: "btn btn-info" %>
+
+      <% end %>
+    </div>
 
     <table class="table-condensed">
       <tbody>
@@ -81,6 +80,26 @@
       </tbody>
     </table>
 
-  <!-- </div> -->
+  <% else %>
+
+    <table class="table-condensed">
+      <tbody>
+
+        <% @memberships.each do |member| %>
+
+            <tr>
+
+            <td> <%= link_to member.user.full_name, user_path(member.user)%> </td>
+
+            <td> <%= member.role %> </td>
+
+            </tr>
+
+        <% end %>
+
+      </tbody>
+    </table>
+
+  <% end %>
 
 </div>

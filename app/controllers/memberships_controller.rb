@@ -3,10 +3,12 @@ class MembershipsController < ApplicationController
 
   before_action :target_project
   before_action :ensure_member
+  before_action :ensure_owner, only: [:create,:update,:destroy]
+
   before_action do
     @membership_types=['member','owner']
   end
-  
+
   def index
     @project=Project.find(params[:project_id])
     @memberships = @project.memberships
