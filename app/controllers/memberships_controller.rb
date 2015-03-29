@@ -3,8 +3,8 @@ class MembershipsController < ApplicationController
 
   before_action :target_project
   before_action :ensure_member
-  before_action :ensure_owner, only: [:create,:update,:destroy]
-
+  before_action :ensure_owner, only: [:create,:update]
+  before_action :ensure_owner_or_memberself, only: [:destroy]
   before_action do
     @membership_types=['member','owner']
   end
@@ -40,8 +40,13 @@ class MembershipsController < ApplicationController
   def destroy
     @membership=Membership.find(params[:id])
     flash[:notice]=@membership.user.full_name + ' was successfully removed'
-    @membership.destroy
-    redirect_to project_memberships_path
+    if current_user.id == @membership.user_id && @membership.role="member"
+      @membership.destroy
+      redirect_to projects_path
+    else
+      @membership.destroy
+      redirect_to project_memberships_path
+    end
   end
 
   private
