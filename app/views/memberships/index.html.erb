@@ -51,6 +51,8 @@
 
       <tbody>
 
+        <% all_owners = @memberships.where(role: "owner") %>
+
         <% @memberships.each do |member| %>
 
           <%= form_for [@project, member], url: project_membership_path(@project,member),
@@ -68,8 +70,12 @@
               <td> <%= f.submit 'Update', class: "btn btn-info" %> </td>
 
               <td>
-                <%= link_to '', project_membership_path(@project,member), method: 'delete',
-                    class: "glyphicon glyphicon-remove" %>
+                <% if all_owners.count == 1 && member.role=="owner" %>
+                  You are the last owner
+                <% else %>
+                  <%= link_to '', project_membership_path(@project,member), method: 'delete',
+                      class: "glyphicon glyphicon-remove" %>
+                <% end %>
               </td>
 
             </tr>

@@ -28,13 +28,22 @@ class MembershipsController < ApplicationController
   end
 
   def update
+
+    @project=Project.find(params[:project_id])
+    @memberships = @project.memberships
     @membership=Membership.find(params[:id])
-    if @membership.update(membership_params.merge(project_id: params[:project_id]))
+    all_owners = @memberships.where(role: "owner")
+
+    if all_owners.count == 1 && @membership.role == "owner" && params[:membership][:role]=="member"
+      flash[:alert]= "Projects must have at least one owner"
+      redirect_to project_memberships_path
+    elsif @membership.update(membership_params.merge(project_id: params[:project_id]))
       flash[:notice]= @membership.user.full_name + " was successfully updated"
       redirect_to project_memberships_path
     else
       render :index
     end
+
   end
 
   def destroy

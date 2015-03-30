@@ -56,8 +56,13 @@ feature "Tasks" do
 
     expect(page).to have_content 'Tasks for Godzilla'
 
+    # puts Membership.first
+    # puts Membership.second
+
     # This Delete Section needs work
-    # find('table.table').find('a.glyphicon.glyphicon-remove').click
+    # find('table.table').find('.glyphicon-remove').click
+    # first(:css,find('.glyphicon-remove')).click
+    # find('.glyphicon-remove').first.click
     # find('a.glyphicon.glyphicon-remove').first.click
     # expect(page).to have_no_content 'Godzilla'
 
