@@ -25,7 +25,9 @@
             <%= link_to firstlast, user_path(user) %>
           </td>
           <td>
-            <%= mail_to user.email %>
+            <% if current_user.id == user.id %>
+              <%= mail_to user.email %>
+            <% end %>
           </td>
           <td align="right">
             <% if current_user.id == user.id %>

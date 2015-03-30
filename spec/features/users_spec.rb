@@ -35,7 +35,7 @@ feature "Users" do
 
     click_link 'Mo Nee'
     expect(page).to have_content 'Mo Nee'
-    expect(page).to have_content 'mn@ex.com'
+    expect(page).to_not have_content 'mn@ex.com'
 
   end
 
