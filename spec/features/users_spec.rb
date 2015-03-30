@@ -27,7 +27,7 @@ feature "Users" do
     fill_in "Last name", with: "Nee"
     fill_in "Email", with: "mn@ex.com"
     fill_in "Password", with: '123'
-    fill_in "Password confirmation", with: '123'
+    fill_in "Password Confirmation", with: '123'
     click_button 'Create User'
 
     expect(page).to have_content 'User was successfully created'
@@ -76,7 +76,7 @@ feature "Users" do
     fill_in "Last name", with: "Nee"
     fill_in "Email", with: "mn@ex.com"
     fill_in "Password", with: '123'
-    fill_in "Password confirmation", with: '123'
+    fill_in "Password Confirmation", with: '123'
     click_button 'Update User'
 
     expect(page).to have_content 'User was successfully updated'
@@ -102,7 +102,7 @@ feature "Users" do
     fill_in "Last name", with: "Nee"
     fill_in "Email", with: "mn@ex.com"
     fill_in "Password", with: '123'
-    fill_in "Password confirmation", with: '123'
+    fill_in "Password Confirmation", with: '123'
     click_button 'Create User'
 
     expect(page).to have_content 'First name can\'t be blank'
@@ -117,7 +117,7 @@ feature "Users" do
     fill_in "Last name", with: "Nee"
     fill_in "Email", with: "mn@ex.com"
     fill_in "Password", with: '123'
-    fill_in "Password confirmation", with: '123'
+    fill_in "Password Confirmation", with: '123'
     click_button 'Sign Up'
 
     expect(current_path).to eq new_project_path

@@ -1,57 +1,69 @@
 
 
-<%= form_for @user, { html: {class: "form-horizontal"}} do |f| %>
+<%= form_for @user, { html: {class: "form-horizontal"} } do |f| %>
 
   <%= render partial: "shared/errors", locals: {object: @user} %>
 
   <div class="form-group">
-    <label class="col-sm-2 control-label"><%= f.label :first_name %></label>
-    <div class="col-sm-3">
+    <label class="col-sm-3 control-label"><%= f.label :first_name %></label>
+    <div class="col-sm-5">
       <%= f.text_field :first_name, class: "col-md-2 form-control"%>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-sm-2 control-label"><%= f.label :last_name %></label>
-    <div class="col-sm-3">
+    <label class="col-sm-3 control-label"><%= f.label :last_name %></label>
+    <div class="col-sm-5">
       <%= f.text_field :last_name, class: "col-md-2 form-control"%>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-sm-2 control-label"><%= f.label :email %></label>
-    <div class="col-sm-3">
+    <label class="col-sm-3 control-label"><%= f.label :email %></label>
+    <div class="col-sm-5">
       <%= f.email_field :email, class: "col-md-2 form-control"%>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-sm-2 control-label"><%= f.label :password %></label>
-    <div class="col-sm-3">
+    <label class="col-sm-3 control-label"><%= f.label :password %></label>
+    <div class="col-sm-5">
       <%= f.password_field :password, class: "col-md-2 form-control"%>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-sm-2 control-label"><%= f.label :password_confirmation %></label>
-    <div class="col-sm-3">
-      <%= f.password_field :password_confirmation, class: "col-md-2 form-control"%>
+    <label class="col-sm-3 control-label"><%= f.label :password_confirmation, "Password Confirmation" %></label>
+    <div class="col-sm-5">
+      <%= f.password_field :password_confirmation, class: "col-md-3 form-control"%>
     </div>
   </div>
 
   <% if @user.id %>
 
+    <!-- # EDIT PAGE -->
+
+    <% if current_user.admin == true %>
+      <div class="form-group">
+      <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-5 check box">
+          <%= f.check_box :admin, {:checked=>true} %>
+          <%= f.label :admin %>
+        </div>
+      </div>
+    <% end %>
+
     <div class="form-group">
-      <label class="col-sm-2 control-label"></label>
-      <div class="col-sm-10">
+      <label class="col-sm-3 control-label"></label>
+      <div class="col-sm-5">
         <%= f.submit "Update User", class: "btn btn-primary" %>
         <%= link_to "Cancel", users_path, class: "btn btn-default" %>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="col-sm-2 control-label"></label>
-      <div class="col-sm-3">
+      <label class="col-sm-3 control-label"></label>
+      <div class="col-sm-5">
         <div class="well col-md-12 text-center">
           <%= link_to "Delete User", user_path(@user), class: "btn btn-danger", align: "center",
           method: "delete", data: { confirm: "Are you sure?" }%>
@@ -61,9 +73,21 @@
 
   <% else %>
 
+    <!-- # NEW PAGE -->
+
+    <% if current_user.admin == true %>
+      <div class="form-group">
+      <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-5 check box">
+          <%= f.check_box :admin, {:checked=>true} %>
+          <%= f.label :admin %>
+        </div>
+      </div>
+    <% end %>
+
     <div class="form-group">
-      <label class="col-sm-2 control-label"></label>
-      <div class="col-sm-10">
+      <label class="col-sm-3 control-label"></label>
+      <div class="col-sm-5">
         <%= f.submit "Create User", class: "btn btn-primary" %>
         <%= link_to "Cancel", users_path, class: "btn btn-default" %>
       </div>
