@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :ensure_user, only: [:edit]
+
   def index
     @users=User.all
   end
@@ -37,6 +39,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+
     @user=User.find(params[:id])
     @comments=Comment.all
     @comments.each do |comment|
@@ -46,9 +49,16 @@ class UsersController < ApplicationController
       end
     end
 
-    @user.destroy
-    flash[:notice]="User was successfully deleted"
-    redirect_to users_path
+    if @user.id == current_user.id
+      session[:user_id]=nil
+      @user.destroy
+      redirect_to root_path
+    else
+      @user.destroy
+      flash[:notice]="User was successfully deleted"
+      redirect_to users_path
+    end
+
   end
 
   private

@@ -46,4 +46,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def ensure_user
+    unless current_user.id == params[:id].to_i
+      render file: 'public/404.html', status: :not_found, layout: false
+    end
+  end
+
 end
