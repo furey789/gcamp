@@ -16,6 +16,14 @@ class ApplicationController < ActionController::Base
   def ensure_current_user
     unless current_user
       flash[:alert]="You must sign in"
+      rp = request.path
+      session[:previous_url] = nil
+      if (request.path != "/sign-in" && request.path != "/sign-up" &&
+          request.path != "/about" && request.path != "/terms" &&
+          request.path != "/faq" && request.path != "/sign-out" &&
+          !request.xhr?) # don't store ajax calls
+        session[:previous_url] = request.fullpath
+      end
       redirect_to sign_in_path
     end
     @projects=Project.all

@@ -3,6 +3,7 @@ class AuthenticationsController < PublicController
 
   def destroy
     session[:user_id]=nil
+    session[:previous_url]=nil
     flash[:notice]="You have successfully logged out"
     redirect_to root_path
   end
@@ -16,7 +17,11 @@ class AuthenticationsController < PublicController
     if @user && @user.authenticate(params[:password])
       session[:user_id]=@user.id
       flash[:notice]="You have successfully signed in"
-      redirect_to projects_path
+      if session[:previous_url] == nil
+        redirect_to projects_path
+      else
+        redirect_to session[:previous_url]
+      end
     else
       @sign_in_error="Email / Password combination is invalid"
       render :new
