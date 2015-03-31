@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   #------------------
 
   def ensure_member
-    if !@project.memberships.pluck(:user_id).include?(current_user.id)
+    unless @project.memberships.pluck(:user_id).include?(current_user.id) || current_user.admin == true
       flash[:alert]="You do not have access to that project"
       redirect_to projects_path
     end
@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_owner
     project_owner = @project.memberships.find_by(role: 'owner')
-    if current_user.id != project_owner.user_id
+    unless current_user.id = project_owner.user_id || current_user.admin == true
       flash[:alert]="You do not have access"
       redirect_to project_path(@project)
     end
@@ -40,14 +40,14 @@ class ApplicationController < ActionController::Base
 
   def ensure_owner_or_memberself
     project_owner = @project.memberships.find_by(role: 'owner')
-    if current_user.id != project_owner.user_id && defined?(params)!=nil && current_user.id != Membership.find(params[:id]).user_id
+    if ( current_user.id != project_owner.user_id && defined?(params)!=nil && current_user.id != Membership.find(params[:id]).user_id ) || current_user.admin == false
       flash[:alert]="You do not have access"
       redirect_to project_path(@project)
     end
   end
 
   def ensure_user
-    unless current_user.id == params[:id].to_i
+    unless current_user.id == params[:id].to_i || current_user.admin == true
       render file: 'public/404.html', status: :not_found, layout: false
     end
   end

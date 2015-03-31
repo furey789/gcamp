@@ -22,7 +22,7 @@
          <a class="dropdown-toggle" data-toggle="dropdown">Projects<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <% @projects.each do |project|%>
-              <% if project.memberships.pluck(:user_id).include?(current_user.id)%>
+              <% if project.memberships.pluck(:user_id).include?(current_user.id) || current_user.admin == true %>
                 <li> <%=link_to "#{project.name}", project_path(project)%> </li>
               <% end %>
             <% end %>
@@ -72,11 +72,11 @@
 
   <div class="container">
     <footer align=center>
-        <hr/>
-        <%= link_to "Home", root_path %> |
-        <%= link_to "Terms", terms_path %> |
-        <%= link_to "About", about_path %> |
-        <%= link_to "FAQ", faq_path %>
+      <hr/>
+      <%= link_to "Home", root_path %> |
+      <%= link_to "Terms", terms_path %> |
+      <%= link_to "About", about_path %> |
+      <%= link_to "FAQ", faq_path %>
     </footer>
   </div>
 

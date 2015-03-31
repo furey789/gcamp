@@ -19,7 +19,7 @@
 
     <tbody>
       <% @projects.each do |project| %>
-        <% if project.memberships.pluck(:user_id).include?(current_user.id)%>
+        <% if project.memberships.pluck(:user_id).include?(current_user.id) || current_user.admin == true %>
           <tr>
             <td>
               <%= link_to project.name, project_path(project) %>

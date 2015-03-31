@@ -25,12 +25,12 @@
             <%= link_to firstlast, user_path(user) %>
           </td>
           <td>
-            <% if current_user.id == user.id %>
+            <% if current_user.id == user.id || current_user.admin == true %>
               <%= mail_to user.email %>
             <% end %>
           </td>
           <td align="right">
-            <% if current_user.id == user.id %>
+            <% if current_user.id == user.id || current_user.admin == true %>
               <%= link_to "Edit", edit_user_path(user) %>
             <% end %>
           </td>

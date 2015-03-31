@@ -14,7 +14,7 @@
   </ol>
 
   <% project_owner = @project.memberships.find_by(role: 'owner') %>
-  <% if current_user.id == project_owner.user_id %>
+  <% if current_user.id == project_owner.user_id || current_user.admin == true %>
 
     <% if @membership.errors.any? %>
       <div class="row">
