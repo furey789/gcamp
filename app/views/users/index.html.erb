@@ -17,6 +17,13 @@
       </tr>
     </thead>
 
+    <% current_user_projectIDs = @memberships.where(user_id: current_user.id).pluck(:project_id) %>
+    <% user_ids_for_projects=[] %>
+    <% current_user_projectIDs.each do |pid| %>
+      <% user_ids_for_projects << @memberships.where(project_id: pid).pluck(:user_id) %>
+    <% end %>
+    <% user_ids_for_projects.flatten!%>
+
     <tbody>
       <% @users.each do |user| %>
         <tr>
@@ -25,7 +32,8 @@
             <%= link_to firstlast, user_path(user) %>
           </td>
           <td>
-            <% if current_user.id == user.id || current_user.admin == true %>
+            <% if current_user.id == user.id || current_user.admin == true ||
+                (user_ids_for_projects.include?(user.id) && user.admin == false) %>
               <%= mail_to user.email %>
             <% end %>
           </td>

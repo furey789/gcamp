@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_owner
     project_owner = @project.memberships.find_by(role: 'owner')
-    unless current_user.id = project_owner.user_id || current_user.admin == true
+    unless current_user.id == project_owner.user_id || current_user.admin == true
       flash[:alert]="You do not have access"
       redirect_to project_path(@project)
     end
@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_owner_or_memberself
     project_owner = @project.memberships.find_by(role: 'owner')
-    if ( current_user.id != project_owner.user_id && defined?(params)!=nil && current_user.id != Membership.find(params[:id]).user_id ) || current_user.admin == false
+    unless ( current_user.id == project_owner.user_id && defined?(params)!=nil && current_user.id != Membership.find(params[:id]).user_id ) || current_user.admin == true
       flash[:alert]="You do not have access"
       redirect_to project_path(@project)
     end

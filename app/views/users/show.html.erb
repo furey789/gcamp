@@ -21,8 +21,15 @@
     <dd><%= @user.last_name %></dd>
   </dl>
 
+  <% current_user_projectIDs = @memberships.where(user_id: current_user.id).pluck(:project_id) %>
+  <% user_ids_for_projects=[] %>
+  <% current_user_projectIDs.each do |pid| %>
+    <% user_ids_for_projects << @memberships.where(project_id: pid).pluck(:user_id) %>
+  <% end %>
+  <% user_ids_for_projects.flatten!%>
+
   <dl class="dl-horizontal">
-    <% if current_user.id == @user.id %>
+    <% if current_user.id == @user.id || (user_ids_for_projects.include?(@user.id) && @user.admin == false) %>
       <dt>Email</dd>
       <dd><%= mail_to @user.email %></dd>
     <% end %>
