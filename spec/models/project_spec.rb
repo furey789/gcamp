@@ -1,7 +1,6 @@
 
 require 'rails_helper'
 
-
 describe Project do
 
   it "requires a name" do
