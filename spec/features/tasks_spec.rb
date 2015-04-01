@@ -13,8 +13,6 @@ feature "Tasks" do
     create_membership(user_id: user_owner.id, project_id: project.id, role: "owner")
     create_membership(user_id: user.id, project_id: project.id)
     task=create_task(project)
-    # create_owner_membership(user_owner,project)
-    # create_member_membership(user,project)
 
   end
 

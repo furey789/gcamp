@@ -33,7 +33,6 @@ class MembershipsController < ApplicationController
     @memberships = @project.memberships
     @membership=Membership.find(params[:id])
     all_owners = @memberships.where(role: "owner")
-
     if all_owners.count == 1 && @membership.role == "owner" && params[:membership][:role]=="member"
       flash[:alert]= "Projects must have at least one owner"
       redirect_to project_memberships_path

@@ -38,9 +38,13 @@ def create_membership(options={})
     }.merge(options))
 end
 
-def create_task(project)
-  Task.create!(
-    description: 'Smell',
-    project_id: project.id
-  )
+def create_task(options={})
+  Task.create!({
+    description: "Smell",
+    due_date: "10-01-2015",
+    complete: false,
+    project_id: 1,
+    created_at: 10-01-2005,
+    updated_at: 10-01-2025
+  }.merge(options))
 end
