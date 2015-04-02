@@ -11,28 +11,31 @@
     </h1>
   </div>
 
+  <!-- <div class="panel-body"> -->
   <dl class="dl-horizontal">
-    <dt>First Name</dd>
+
+    <dt>First Name</dt>
     <dd><%= @user.first_name %></dd>
-  </dl>
 
-  <dl class="dl-horizontal">
-    <dt>Last Name</dd>
+    <dt>Last Name</dt>
     <dd><%= @user.last_name %></dd>
-  </dl>
 
-  <% current_user_projectIDs = @memberships.where(user_id: current_user.id).pluck(:project_id) %>
-  <% user_ids_for_projects=[] %>
-  <% current_user_projectIDs.each do |pid| %>
-    <% user_ids_for_projects << @memberships.where(project_id: pid).pluck(:user_id) %>
-  <% end %>
-  <% user_ids_for_projects.flatten!%>
+    <% current_user_projectIDs = @memberships.where(user_id: current_user.id).pluck(:project_id) %>
+    <% user_ids_for_projects=[] %>
+    <% current_user_projectIDs.each do |pid| %>
+      <% user_ids_for_projects << @memberships.where(project_id: pid).pluck(:user_id) %>
+    <% end %>
+    <% user_ids_for_projects.flatten!%>
 
-  <dl class="dl-horizontal">
     <% if current_user.id == @user.id || (user_ids_for_projects.include?(@user.id) && @user.admin == false) %>
-      <dt>Email</dd>
+      <dt>Email</dt>
       <dd><%= mail_to @user.email %></dd>
     <% end %>
+
+    <dt>Pivotal Tracker Token</dt>
+    <dd><%= @user.token[0..3] + ('*' * 28) %></dd>
+
   </dl>
+  <!-- </div> -->
 
 </div>

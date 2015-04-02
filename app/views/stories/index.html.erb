@@ -1,0 +1,49 @@
+
+<div class="container">
+
+  <div class="page-header">
+    <h1>Stories for <%=@tracker_project[0][:name]%> </h1>
+  </div>
+
+  <table class="table table-striped">
+
+    <thead>
+      <tr>
+        <th>Story</th>
+        <th>Estimate</th>
+        <th>Labels</th>
+        <th>Current State</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- current user tracker projects -->
+      <% @stories.each do |story_hash| %>
+          <tr>
+            <td>
+              <%=link_to story_hash[:name], "https://www.pivotaltracker.com/n/projects/1260610" %>
+            </td>
+            <td>
+              <% if story_hash[:story_type] == "chore"%>
+                0
+              <% elsif story_hash[:story_type] == "feature" %>
+                1
+              <% else %>
+                2
+              <% end %>
+            </td>
+            <td>
+              <%story_hash[:labels].each do |label| %>
+                <%= label[:name] %>,
+              <% end %>
+            </td>
+            <td>
+              <%=story_hash[:current_state] %>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
+</div>

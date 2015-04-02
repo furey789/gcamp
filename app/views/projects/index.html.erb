@@ -34,4 +34,33 @@
 
   </table>
 
+  <div class="page-header">
+    <h1>Pivotal Tracker Projects</h1>
+  </div>
+
+  <table class="table">
+
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- current user tracker projects -->
+      <% @tracker_projects.each do |tracker_project| %>
+          <tr>
+            <td>
+              <% if tracker_project.to_s.include?("error") == false %>
+                <%=link_to tracker_project[:name], tracker_project_stories_path(tracker_project[:id]) %>
+              <% else %>
+                "Invalid tracker project: Please verify the Pivotal Tracker Token"
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
 </div>

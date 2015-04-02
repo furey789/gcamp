@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects=Project.all
+    @tracker_projects = TrackerAPI.new.projects(current_user.token)
   end
 
   def new

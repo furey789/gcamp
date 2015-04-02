@@ -19,6 +19,10 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :tracker_projects, only: [] do
+      resources :stories, only: [:index]
+    end
+
     get 'sign-up', to: "registrations#new"
     post 'sign-up', to: "registrations#create"
     get 'sign-out', to: "authentications#destroy"
