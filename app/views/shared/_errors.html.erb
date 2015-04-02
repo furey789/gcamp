@@ -12,6 +12,7 @@
       </h3>
       <ul>
         <% object.errors.full_messages.each do |error| %>
+          <!-- if password digest true then skip error if @user.errors.full_messages= -->
           <li><%= error %></li>
         <% end %>
       </ul>
