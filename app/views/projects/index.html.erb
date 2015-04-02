@@ -34,6 +34,7 @@
 
   </table>
 
+
   <div class="page-header">
     <h1>Pivotal Tracker Projects</h1>
   </div>
@@ -48,19 +49,28 @@
 
     <tbody>
       <!-- current user tracker projects -->
-      <% @tracker_projects.each do |tracker_project| %>
-          <tr>
-            <td>
-              <% if tracker_project.to_s.include?("error") %>
-                "Invalid tracker project - Please verify the Pivotal Tracker Token"
-              <% else %>
-                <%=link_to tracker_project[:name], tracker_project_stories_path(tracker_project[:id].to_i) %>
-              <% end %>
-            </td>
-          </tr>
+      <% if @tracker_projects.to_s.include?("error") == false%>
+
+        <% @tracker_projects.each do |tracker_project| %>
+            <tr>
+              <td>
+                  <%=link_to tracker_project[:name], tracker_project_stories_path(tracker_project[:id].to_i) %>
+              </td>
+            </tr>
+        <% end %>
+
+      <% else %>
+
+        <tr>
+          <td>
+            A tracker project cannot be found - Please verify the Pivotal Tracker Token
+          </td>
+        </tr>
+
       <% end %>
     </tbody>
 
   </table>
+
 
 </div>

@@ -11,7 +11,7 @@ class TrackerAPI
         req.headers['Content-Type'] = 'application/json'
         req.headers['X-TrackerToken'] = token
       end
-      JSON.parse(response.body, symbolize_names: true
+      JSON.parse(response.body, symbolize_names: true)
     else
       ["error"]
     end
