@@ -51,10 +51,10 @@
       <% @tracker_projects.each do |tracker_project| %>
           <tr>
             <td>
-              <% if tracker_project.to_s.include?("error") == false %>
-                <%=link_to tracker_project[:name], tracker_project_stories_path(tracker_project[:id].to_i) %>
+              <% if tracker_project.to_s.include?("error") || tracker_project.to_s.include?(nil)%>
+                "Invalid tracker project - Please verify the Pivotal Tracker Token"
               <% else %>
-                "Invalid tracker project: Please verify the Pivotal Tracker Token"
+                <%=link_to tracker_project[:name], tracker_project_stories_path(tracker_project[:id].to_i) %>
               <% end %>
             </td>
           </tr>
