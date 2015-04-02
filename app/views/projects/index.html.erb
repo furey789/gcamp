@@ -52,7 +52,7 @@
           <tr>
             <td>
               <% if tracker_project.to_s.include?("error") == false %>
-                <%=link_to tracker_project[:name], tracker_project_stories_path(tracker_project[:id]) %>
+                <%=link_to tracker_project[:name], tracker_project_stories_path(tracker_project[:id].to_i) %>
               <% else %>
                 "Invalid tracker project: Please verify the Pivotal Tracker Token"
               <% end %>
