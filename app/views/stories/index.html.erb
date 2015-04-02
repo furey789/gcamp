@@ -21,7 +21,8 @@
       <% @stories.each do |story_hash| %>
           <tr>
             <td>
-              <%=link_to story_hash[:name], "https://www.pivotaltracker.com/n/projects/1260610" %>
+              <%=link_to story_hash[:name], story_hash[:url] %>
+              <!-- "https://www.pivotaltracker.com/n/projects/1260610" -->
             </td>
             <td>
               <% if story_hash[:story_type] == "chore"%>
