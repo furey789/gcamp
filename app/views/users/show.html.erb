@@ -33,7 +33,11 @@
     <% end %>
 
     <dt>Pivotal Tracker Token</dt>
-    <dd><%= @user.token[0..3] + ('*' * 28) %></dd>
+    <% if @user.token == nil %>
+      Token is Missing
+    <% else %>
+      <dd><%= @user.token[0..3] + ('*' * 28) %></dd>
+    <% end %>
 
   </dl>
   <!-- </div> -->
