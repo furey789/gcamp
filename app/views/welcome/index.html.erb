@@ -9,24 +9,31 @@
 </div>
 
 <div>
-
 </div>
 
 <div class="container">
+
   <div class="row lead">
-    <div class="col-md-4">
-        <p class="lead"><%=image_tag("8969237967_c5960fc544_b.jpg",
-        class:"img-responsive")%></p>
-    </div>
-    <div class="col-md-4">
-        <p class="lead"><%=image_tag("8864977481_713b7cbda5_b.jpg",
-        class:"img-responsive")%></p>
-    </div>
-    <div class="col-md-4">
-        <p class="lead"><%=image_tag("8203794182_8004f8f636_b.jpg",
-        class:"img-responsive")%></p>
-    </div>
+
+    <section class="mycol-3">
+
+      <div class="column">
+        <%=image_tag("8969237967_c5960fc544_b.jpg",
+        class:"img-responsive")%>
+      </div>
+      <div class="column">
+        <%=image_tag("8864977481_713b7cbda5_b.jpg",
+        class:"img-responsive")%>
+      </div>
+      <div class="column">
+        <%=image_tag("8203794182_8004f8f636_b.jpg",
+        class:"img-responsive")%>
+      </div>
+
+    </section>
+
   </div>
+
 </div>
 
 <div>
@@ -34,9 +41,13 @@
 
 
 <div class="container">
+
   <div class="row" >
 
-    <div class="col-md-4">
+    <div class="mycol-3">
+
+      <div class="column">
+
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">Tasks</h3>
@@ -45,9 +56,11 @@
           Grouped by projects and lists. Just the way you like'em
         </div>
       </div>
-    </div>
 
-    <div class="col-md-4">
+      </div>
+
+      <div class="column">
+
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">Permissions</h3>
@@ -56,9 +69,11 @@
           Fine-grained permissions.
         </div>
       </div>
-    </div>
 
-    <div class="col-md-4">
+      </div>
+
+      <div class="column">
+
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">Comments</h3>
@@ -70,6 +85,9 @@
           </ul>
         </div>
       </div>
+
+      </div>
+
     </div>
 
   </div>

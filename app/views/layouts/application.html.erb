@@ -60,6 +60,14 @@
   </div>
   <% end %>
 
+  <% if flash[:no_tracker] %>
+  <div class="container">
+    <div class="alert alert-success" role="alert">
+      <%= flash[:no_tracker] %>
+    </div>
+  </div>
+  <% end %>
+
   <% if alert %>
   <div class="container">
     <div class="alert alert-danger" role="alert">

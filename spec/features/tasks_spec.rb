@@ -7,6 +7,7 @@ feature "Tasks" do
   before :each do
 
     User.destroy_all
+    Project.destroy_all
     user_owner=create_user_owner
     user=create_user
     project=create_project
@@ -26,7 +27,8 @@ feature "Tasks" do
 
     expect(current_path).to eq '/projects'
 
-    find('table.table').click_on 'Godzilla'
+    find('tr > td:first-child').click_on('Godzilla', match: :first)
+    #find('tbody').click_on('Godzilla', match: :first)
 
     expect(page).to have_content 'Godzilla Project'
 

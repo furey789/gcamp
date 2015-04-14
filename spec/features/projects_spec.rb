@@ -21,7 +21,7 @@ feature "Projects" do
 
     expect(page).to have_content 'Projects'
 
-    find('div.page-header').click_on 'New Project'
+    find('div.pull-right').click_on 'New Project'
 
     expect(page).to have_content 'New Project'
     fill_in "Name", with: "Build an arc"
@@ -58,7 +58,7 @@ feature "Projects" do
 
     expect(current_path).to eq '/projects'
 
-    find('div.page-header').click_on 'New Project'
+    find('div.pull-right').click_on 'New Project'
 
     expect(page).to have_content 'New Project'
     click_button 'Create Project'
